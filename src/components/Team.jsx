@@ -1,36 +1,84 @@
 import React from "react";
 
+const roles = [
+  { title: "Ingenieros",    icon: "⚙️" },
+  { title: "Programadores", icon: "💻" },
+  { title: "Diseñadores",   icon: "🎨" },
+  { title: "Marketers",     icon: "📣" },
+];
+
+const values = ["Innovación", "Calidad", "Agilidad", "Colaboración", "Impacto"];
+
 export default function Team() {
   return (
-    <div className="w-full bg-[#f8f9fa] flex flex-col md:flex-row items-center border-t border-gray-200">
-      {/* Team Image Section (using a placeholder gradient/icon since we don't have the photo) */}
-      <div className="w-full md:w-1/2 h-[400px] md:h-[500px] bg-gray-300 relative overflow-hidden">
-        {/* Placeholder for the team photo */}
-        <div className="absolute inset-0 bg-[#35404d] flex flex-col items-center justify-center text-white p-8 text-center">
-          <svg className="w-24 h-24 mb-4 text-gray-400 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-          </svg>
-          <span className="text-xl font-medium text-gray-400">[Foto del Equipo CreaLab]</span>
+    <section id="equipo" className="w-full bg-[#f8f9fa] border-t border-gray-100 py-20">
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-stretch rounded-2xl overflow-hidden shadow-lg">
+        {/* Visual side */}
+        <div
+          className="w-full lg:w-1/2 min-h-[420px] relative overflow-hidden"
+          style={{ background: "linear-gradient(135deg, #2d3848 0%, #35404d 60%, #3d4d5e 100%)" }}
+        >
+          {/* Dot pattern */}
+          <div className="absolute inset-0 opacity-[0.08]">
+            {Array.from({ length: 6 }).map((_, r) =>
+              Array.from({ length: 8 }).map((_, c) => (
+                <div
+                  key={`${r}-${c}`}
+                  className="absolute w-1.5 h-1.5 rounded-full bg-white"
+                  style={{ top: `${r * 15 + 8}%`, left: `${c * 13 + 4}%` }}
+                />
+              ))
+            )}
+          </div>
+
+          {/* Roles grid */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-10">
+            <p className="text-white/50 text-xs font-bold tracking-widest uppercase mb-6">Nuestro equipo</p>
+            <div className="grid grid-cols-2 gap-4 w-full max-w-sm">
+              {roles.map(({ title, icon }) => (
+                <div
+                  key={title}
+                  className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 border border-white/15 text-center hover:bg-white/20 transition-colors"
+                >
+                  <div className="text-3xl mb-2">{icon}</div>
+                  <div className="text-white font-bold text-sm">{title}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Text side */}
+        <div className="w-full lg:w-1/2 py-16 px-10 md:px-16 bg-white flex flex-col justify-center">
+          <p className="text-xs font-bold tracking-widest text-[#ea5959] uppercase mb-3">Quiénes somos</p>
+          <h2 className="text-5xl font-black text-[#35404d] tracking-tight mb-4">EQUIPO</h2>
+          <h3 className="text-xl font-bold text-[#ea5959] mb-6">Somos jóvenes, no novatos.</h3>
+          <p className="text-gray-500 text-base mb-8 leading-relaxed max-w-md">
+            Un equipo íntegro de{" "}
+            <strong className="text-gray-700">profesionales y expertos</strong> en diferentes
+            disciplinas. Todo lo que necesitas para ejecutar tu proyecto de forma exitosa.
+          </p>
+
+          {/* Value tags */}
+          <div className="flex flex-wrap gap-2 mb-10">
+            {values.map((v) => (
+              <span
+                key={v}
+                className="text-xs font-semibold border border-[#ea5959] text-[#ea5959] px-3 py-1 rounded-full"
+              >
+                {v}
+              </span>
+            ))}
+          </div>
+
+          <button
+            onClick={() => document.querySelector("#contacto")?.scrollIntoView({ behavior: "smooth" })}
+            className="w-fit bg-[#ea5959] text-white font-bold px-8 py-4 rounded-xl shadow-md hover:bg-[#d64a4a] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+          >
+            CONOCER EL EQUIPO
+          </button>
         </div>
       </div>
-
-      {/* Text Content Section */}
-      <div className="w-full md:w-1/2 py-20 px-8 md:px-16 lg:px-24">
-        <h2 className="text-4xl md:text-5xl font-black text-[#35404d] tracking-tight mb-4">
-          EQUIPO
-        </h2>
-        <h3 className="text-xl md:text-2xl font-bold text-[#ea5959] mb-6">
-          Somos jóvenes, no novatos.
-        </h3>
-        <p className="text-gray-600 text-lg mb-8 leading-relaxed max-w-md">
-          Un equipo íntegro de <span className="font-bold text-gray-800">profesionales y expertos</span> en diferentes disciplinas: Ingenieros, programadores, diseñadores, marketeros y todo lo que necesitas para ejecutar tu proyecto de forma exitosa.
-        </p>
-        <button 
-          className="bg-[#ea5959] text-white font-bold px-8 py-4 rounded shadow-md hover:bg-[#d64a4a] transition-colors"
-        >
-          SABER MÁS
-        </button>
-      </div>
-    </div>
+    </section>
   );
 }

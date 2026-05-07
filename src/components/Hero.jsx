@@ -1,51 +1,85 @@
 import React from "react";
 
+const scrollTo = (id) => {
+  const el = document.querySelector(id);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+};
+
 export default function Hero() {
   return (
-    <div className="relative w-full min-h-[650px] flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-24 pb-36">
-      {/* Background Image */}
-      <div 
+    <div className="relative w-full min-h-[720px] flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-28 pb-44">
+      {/* Background */}
+      <div
         className="absolute inset-0 z-0 bg-cover bg-center"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop')" }}
-      ></div>
-      
-      {/* Red/Orange Gradient Overlay matching Crealab */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#d44848]/90 to-[#f28e5a]/85 mix-blend-multiply"></div>
-      <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#e8524b]/80 to-[#f28e5a]/80"></div>
+      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#c93f3f] via-[#d44848] to-[#f28e5a] opacity-92" />
+      <div className="absolute inset-0 z-0 bg-[#1a0a0a]/15" />
 
-      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center mt-8">
-        <h1 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4rem] text-white font-medium leading-[1.1] mb-6 tracking-tight drop-shadow-md">
-          Te ayudamos a crear <br />
-          <span className="font-bold block mt-1">Soluciones Innovadoras</span>
-          para tu negocio.
+      {/* Decorative blobs */}
+      <div className="absolute top-1/4 left-8 w-80 h-80 rounded-full bg-white/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/3 right-8 w-64 h-64 rounded-full bg-white/5 blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
+        {/* Badge */}
+        <div className="animate-fade-in inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold px-5 py-2.5 rounded-full mb-8 tracking-wide">
+          <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+          Innovación · Software · Diseño · Tecnología
+        </div>
+
+        {/* Headline */}
+        <h1 className="animate-fade-in delay-100 text-[2.4rem] md:text-[3.8rem] lg:text-[4.5rem] text-white font-black leading-[1.05] mb-6 tracking-tight drop-shadow-lg">
+          Te ayudamos a crear
+          <span className="block mt-1">Soluciones Innovadoras</span>
+          <span className="block text-white/90 text-[2rem] md:text-[2.8rem] lg:text-[3.2rem] font-medium mt-1">
+            para tu negocio.
+          </span>
         </h1>
-        
-        <p className="text-base md:text-lg text-white max-w-2xl mx-auto mb-10 font-medium leading-relaxed drop-shadow">
-          Tomamos proyectos que no cualquiera podría tomar, y los <br className="hidden md:block" />
-          hacemos de una forma que nadie podría hacer.<br />
-          <span className="font-bold text-[1.05rem]">Resolvemos problemas con Metodologías de Innovación, <br className="hidden md:block" /> Software, Diseño y Tecnología.</span>
+
+        <p className="animate-fade-in delay-200 text-base md:text-lg text-white/85 max-w-2xl mx-auto mb-10 leading-relaxed">
+          Tomamos proyectos que no cualquiera podría tomar, y los hacemos de una forma que nadie podría hacer.
+          <br />
+          <strong className="text-white">
+            Resolvemos problemas con Metodologías de Innovación, Software, Diseño y Tecnología.
+          </strong>
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto mt-2">
-          <button 
-            className="border-[1.5px] border-white text-white font-bold px-9 py-3 rounded-md hover:bg-white/10 transition-colors text-sm tracking-wide"
+        {/* CTAs */}
+        <div className="animate-fade-in delay-300 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <button
+            onClick={() => scrollTo("#casos")}
+            className="border-2 border-white text-white font-bold px-10 py-3.5 rounded-lg hover:bg-white hover:text-[#e8524b] transition-all duration-200 text-sm tracking-widest"
           >
-            CASOS DE EXITO
+            CASOS DE ÉXITO
           </button>
-          <button 
-            className="bg-white text-[#e8524b] font-bold px-9 py-3 rounded-md shadow-md hover:bg-gray-50 transition-colors text-sm tracking-wide"
+          <button
+            onClick={() => scrollTo("#contacto")}
+            className="bg-white text-[#e8524b] font-bold px-10 py-3.5 rounded-lg shadow-xl hover:shadow-2xl hover:scale-[1.03] transition-all duration-200 text-sm tracking-widest"
           >
             CONTÁCTANOS
           </button>
         </div>
+
+        {/* Stats */}
+        <div className="animate-fade-in delay-400 flex flex-wrap justify-center divide-x divide-white/20 mt-16">
+          {[
+            { value: "30+", label: "Proyectos" },
+            { value: "50+", label: "Clientes" },
+            { value: "5+",  label: "Años de experiencia" },
+          ].map(({ value, label }) => (
+            <div key={label} className="flex flex-col items-center px-8 py-2">
+              <span className="text-3xl font-black text-white">{value}</span>
+              <span className="text-xs font-medium text-white/65 tracking-wide uppercase mt-1">{label}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* SVG Wave Bottom */}
-      <div className="absolute bottom-[-1px] left-0 w-full overflow-hidden leading-none z-10">
-        <svg className="relative block w-[calc(100%+1.3px)] h-[80px] md:h-[130px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.2,192.39,101.4c60.36-17.51,114.93-49.33,178.61-44.96z" fill="rgba(255,255,255,0.4)"></path>
-          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="rgba(255,255,255,0.6)"></path>
-          <path d="M1200,120V73.28C1109.11,111.45,1009.6,116.14,917,89.54c-70.39-20.24-135.53-56.12-208.57-65.43-78.7-10-155.8,11.23-231.25,32.73-82.68,23.59-168.32,44.75-255.45,41-71.3-3.12-140-27.27-210.51-40.45A467.57,467.57,0,0,0,0,51V120H1200Z" fill="#ffffff"></path>
+      {/* Wave */}
+      <div className="absolute bottom-[-1px] left-0 w-full overflow-hidden z-10">
+        <svg className="block w-[calc(100%+1px)] h-[100px] md:h-[150px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.2,192.39,101.4c60.36-17.51,114.93-49.33,178.61-44.96z" fill="rgba(255,255,255,0.25)" />
+          <path d="M1200,120V73.28C1109.11,111.45,1009.6,116.14,917,89.54c-70.39-20.24-135.53-56.12-208.57-65.43-78.7-10-155.8,11.23-231.25,32.73-82.68,23.59-168.32,44.75-255.45,41-71.3-3.12-140-27.27-210.51-40.45A467.57,467.57,0,0,0,0,51V120H1200Z" fill="#ffffff" />
         </svg>
       </div>
     </div>

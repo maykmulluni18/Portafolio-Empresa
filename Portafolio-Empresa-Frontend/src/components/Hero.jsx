@@ -4,11 +4,16 @@ import { useSite } from "../context/SiteContext";
 const scrollTo = (id) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
 export default function Hero() {
-  const { company, portfolio, loading } = useSite() ?? {};
+  const { company, portfolio, testimonials, technologies, loading } = useSite() ?? {};
 
-  const name        = company?.name        ?? "Nombre Empresa";
-  const description = company?.description ?? "Tomamos proyectos que no cualquiera podría tomar, y los hacemos de una forma que nadie podría hacer.";
-  const projectCount = portfolio?.length > 0 ? `${portfolio.length}+` : "30+";
+  const name = company?.name ?? '';
+  const description = company?.description ?? '';
+
+  const stats = [
+    portfolio?.length > 0 && { value: `${portfolio.length}+`, label: 'Proyectos' },
+    testimonials?.length > 0 && { value: `${testimonials.length}+`, label: 'Reseñas' },
+    technologies?.length > 0 && { value: `${technologies.length}+`, label: 'Tecnologías' },
+  ].filter(Boolean);
 
   return (
     <div className="relative w-full min-h-[720px] flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-28 pb-44">
@@ -26,16 +31,16 @@ export default function Hero() {
         </div>
 
         <h1 className="text-[2.4rem] md:text-[3.8rem] lg:text-[4.5rem] text-white font-black leading-[1.05] mb-6 tracking-tight drop-shadow-lg">
-          Te ayudamos a crear
+          {name ? `${name}` : 'Te ayudamos a crear'}
           <span className="block mt-1">Soluciones Innovadoras</span>
           <span className="block text-white/90 text-[2rem] md:text-[2.8rem] lg:text-[3.2rem] font-medium mt-1">para tu negocio.</span>
         </h1>
 
-        <p className="text-base md:text-lg text-white/85 max-w-2xl mx-auto mb-10 leading-relaxed">
-          {description}
-          <br />
-          <strong className="text-white">Resolvemos problemas con Metodologías de Innovación, Software, Diseño y Tecnología.</strong>
-        </p>
+        {description && (
+          <p className="text-base md:text-lg text-white/85 max-w-2xl mx-auto mb-10 leading-relaxed">
+            {description}
+          </p>
+        )}
 
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           <button onClick={() => scrollTo("#casos")}
@@ -48,18 +53,16 @@ export default function Hero() {
           </button>
         </div>
 
-        <div className="flex flex-wrap justify-center divide-x divide-white/20 mt-16">
-          {[
-            { value: projectCount, label: "Proyectos" },
-            { value: "50+", label: "Clientes" },
-            { value: "5+",  label: "Años de experiencia" },
-          ].map(({ value, label }) => (
-            <div key={label} className="flex flex-col items-center px-8 py-2">
-              <span className="text-3xl font-black text-white">{value}</span>
-              <span className="text-xs font-medium text-white/65 tracking-wide uppercase mt-1">{label}</span>
-            </div>
-          ))}
-        </div>
+        {stats.length > 0 && (
+          <div className="flex flex-wrap justify-center divide-x divide-white/20 mt-16">
+            {stats.map(({ value, label }) => (
+              <div key={label} className="flex flex-col items-center px-8 py-2">
+                <span className="text-3xl font-black text-white">{value}</span>
+                <span className="text-xs font-medium text-white/65 tracking-wide uppercase mt-1">{label}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="absolute bottom-[-1px] left-0 w-full overflow-hidden z-10">

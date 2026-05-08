@@ -46,11 +46,11 @@ export default function Welcome() {
           ))}
         </div>
 
-        <div className="text-center">
+        {/* <div className="text-center">
           <p className="text-xs font-bold tracking-widest text-[#ea5959] uppercase mb-4">Lo que hacemos</p>
           <h3 className="text-4xl md:text-5xl font-black text-[#35404d] tracking-tight mb-4">Nuestros Servicios</h3>
           <div className="w-16 h-[3px] bg-[#ea5959] rounded-full mx-auto" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

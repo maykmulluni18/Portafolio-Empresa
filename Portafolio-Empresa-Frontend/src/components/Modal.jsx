@@ -1,6 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 
-export default function Modal({ title, onClose, children }) {
+const sizeClasses = {
+  sm: 'max-w-md',
+  md: 'max-w-lg',
+  lg: 'max-w-2xl',
+  xl: 'max-w-4xl',
+};
+
+export default function Modal({ title, onClose, children, size = 'md' }) {
   const backdropRef = useRef();
 
   useEffect(() => {
@@ -15,7 +22,7 @@ export default function Modal({ title, onClose, children }) {
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
       onClick={(e) => { if (e.target === backdropRef.current) onClose(); }}
     >
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] flex flex-col">
+      <div className={`bg-white rounded-2xl shadow-xl w-full ${sizeClasses[size] ?? sizeClasses.md} max-h-[90vh] flex flex-col`}>
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <h3 className="font-bold text-lg text-[#1e2730]">{title}</h3>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">

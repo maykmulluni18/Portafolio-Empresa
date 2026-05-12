@@ -11,6 +11,10 @@ class ProjectImage extends Model
 
     protected $fillable = ['project_id', 'image_url'];
 
+    protected $casts = [
+        'project_id' => 'integer',
+    ];
+
     public function project()
     {
         return $this->belongsTo(Project::class);

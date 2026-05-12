@@ -59,6 +59,14 @@ export const projectService = {
   destroy: (id)         => api.delete(`/projects/${id}`),
 };
 
+export const projectImageService = {
+  getAll:  (params)     => api.get('/project-images', { params }),
+  getOne:  (id)         => api.get(`/project-images/${id}`),
+  create:  (data)       => api.post('/project-images', data),
+  update:  (id, data)   => api.put(`/project-images/${id}`, data),
+  destroy: (id)         => api.delete(`/project-images/${id}`),
+};
+
 export const technologyService = {
   getAll:  ()           => api.get('/technologies'),
   create:  (data)       => api.post('/technologies', data),

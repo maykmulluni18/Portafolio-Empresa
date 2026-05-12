@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CrudTable({ title, columns, data, onAdd, onEdit, onDelete, loading }) {
+export default function CrudTable({ title, columns, data, onAdd, onEdit, onDelete, onManageImages, loading }) {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -42,6 +42,14 @@ export default function CrudTable({ title, columns, data, onAdd, onEdit, onDelet
                       </td>
                     ))}
                     <td className="px-5 py-3.5 text-right whitespace-nowrap">
+                      {onManageImages && (
+                        <button
+                          onClick={() => onManageImages(row)}
+                          className="text-xs px-3 py-1.5 rounded-lg bg-amber-50 text-amber-700 font-semibold hover:bg-amber-100 transition-colors mr-2"
+                        >
+                          Imágenes
+                        </button>
+                      )}
                       {onEdit && (
                         <button
                           onClick={() => onEdit(row)}
